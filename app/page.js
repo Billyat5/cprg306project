@@ -11,11 +11,11 @@ const Page = () => {
     const [showMainPage, setShowMainPage] = useState(true);
 
     return (
-        <PageContext.Provider value={{ showMainPage, setShowMainPage }}>
-            <Header />
-            {showMainPage ? <MainPage /> : <SearchResultsPage />}
-            <Footer />
-        </PageContext.Provider>
+    <PageContext.Provider value={{ showMainPage, setShowMainPage }}>
+        <Header />
+        {showMainPage ? <MainPage /> : <SearchResultsPage />}
+        <Footer />
+    </PageContext.Provider>
     );
 };
 

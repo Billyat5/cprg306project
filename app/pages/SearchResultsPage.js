@@ -12,14 +12,18 @@ const SearchResultsPage = () => {
     // Placeholder for movie search results. 
     // This should be replaced with actual movie data fetched from an API.
     const [movies, setMovies] = useState([
-        { id: 1, title: "Example Movie 1" },
-        { id: 2, title: "Example Movie 2" },
+        { id: 1, title: " Movie 1" },
+        { id: 2, title: " Movie 2" },
+        { id: 3, title: " Movie 3" },
+        { id: 4, title: " Movie 4" },
+        { id: 5, title: " Movie 5" },
+        { id: 6, title: " Movie 6" },
         // ... more movie items
     ]);
 
     // Placeholder for pagination. Assume 5 pages for demonstration.
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 5;
+    const totalPages = 2;
 
     const handlePageChange = (page) => {
         setCurrentPage(page);

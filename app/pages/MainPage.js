@@ -4,6 +4,7 @@ import PageContext from '../PageContext';
 import SearchBar from '../components/SearchBar';
 import FeaturedMovies from '../components/FeaturedMovies';
 
+
 const MainPage = () => {
     const { setShowMainPage } = useContext(PageContext);
 
@@ -12,8 +13,8 @@ const MainPage = () => {
     };
 
     return (
-        <div>
-            <SearchBar onSearch={handleSearch} />
+        <div className="p-4">
+            <SearchBar onSearch={handleSearch} className="mb-4" />
             <FeaturedMovies />
         </div>
     );
