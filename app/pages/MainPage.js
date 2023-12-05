@@ -6,6 +6,7 @@ import SearchBar from '../components/SearchBar';
 import FeaturedMovies from '../components/FeaturedMovies';
 import { SearchContext } from '../context/SearchContext';
 import { fetchMovies, fetchActors } from '../_utils/tmdbApi';
+import Trending from './Trending';
 
 const MainPage = () => {
     const { setShowMainPage } = useContext(PageContext);
@@ -33,6 +34,7 @@ const MainPage = () => {
                 onChange={handleSearchQueryChange}
             />
             <FeaturedMovies />
+            <Trending />
             {/* ... rest of the component ... */}
         </div>
     );

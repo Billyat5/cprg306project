@@ -35,3 +35,19 @@ export const fetchActors = async (query, page = 1) => {
         Name: actor.name
     }));
 };
+/**
+ * Fetches movies based on trending movies.
+ * @returns {Promise<Array>} An array of trending movie objects.
+ */
+export const fetchTrendingMovies = async () => {
+    const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.results.map(movie => ({
+        ...movie,
+        Poster: movie.poster_path ? `${BASE_IMAGE_URL}${movie.poster_path}` : 'default_poster_url.jpg',
+        Title: movie.title,
+        ReleaseDate: movie.release_date || 'N/A',
+        VoteAverage: Math.round(movie.vote_average)
+    }));
+};
