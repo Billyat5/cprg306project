@@ -1,6 +1,6 @@
 // app/components/Header.js
 import React, { useContext } from 'react';
-import PageContext from '../PageContext';
+import PageContext from '../context/PageContext';
 
 const Header = () => {
     const { setShowMainPage } = useContext(PageContext);

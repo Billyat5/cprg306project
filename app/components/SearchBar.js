@@ -1,18 +1,15 @@
-// app/components/SearchBar.js
-import React, { useState } from 'react';
-
-const SearchBar = ({ onSearch }) => {
-    const [searchTerm, setSearchTerm] = useState("");
-
+const SearchBar = ({ onSearch, value, onChange }) => {
     return (
         <div>
             <input 
                 type="text" 
                 placeholder="Search movies..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && onSearch()}
+                className="text-black"
             />
-            <button onClick={() => onSearch(searchTerm)}>Search</button>
+            <button onClick={onSearch}>Search</button>
         </div>
     );
 };

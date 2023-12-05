@@ -1,45 +1,74 @@
-// app/pages/SearchResultsPage.js
-import React, { useState, useContext } from 'react';
-import PageContext from '../PageContext';
+import React, { useContext, useEffect, useState } from 'react';
+import PageContext from '../context/PageContext';
 import SearchBar from '../components/SearchBar';
 import FilterSidebar from '../components/FilterSidebar';
 import MovieListItem from '../components/MovieListItem';
+import ActorListItem from '../components/ActorListItem';
 import Pagination from '../components/Pagination';
+import { SearchContext } from '../context/SearchContext';
+import { fetchMovies, fetchActors } from '../_utils/tmdbApi'; // Assuming these functions are in tmdbApi.js
 
 const SearchResultsPage = () => {
     const { setShowMainPage } = useContext(PageContext);
-    
-    // Placeholder for movie search results. 
-    // This should be replaced with actual movie data fetched from an API.
-    const [movies, setMovies] = useState([
-        { id: 1, title: " Movie 1" },
-        { id: 2, title: " Movie 2" },
-        { id: 3, title: " Movie 3" },
-        { id: 4, title: " Movie 4" },
-        { id: 5, title: " Movie 5" },
-        { id: 6, title: " Movie 6" },
-        // ... more movie items
-    ]);
-
-    // Placeholder for pagination. Assume 5 pages for demonstration.
+    const { searchResults, setSearchResults, setSearchTerm } = useContext(SearchContext);
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 2;
+    const [totalPages, setTotalPages] = useState(5); // Adjust based on actual results
+    const [searchQuery, setSearchQuery] = useState("");
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-        // Here you would fetch new page data
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+        
     };
+
+    const handleSearch = async (term) => {
+        const movieResults = await fetchMovies(term);
+        const actorResults = await fetchActors(term);
+        setSearchResults({ movies: movieResults || [], actors: actorResults || [] });
+        setSearchTerm(term); // This will update the searchTerm in context
+        setCurrentPage(1);
+        setSearchQuery("");
+    };
+
+    const handleSearchQueryChange = (query) => {
+        setSearchQuery(query); // Update the search query state
+    };
+
+    useEffect(() => {
+        // Update logic for totalPages or other effects
+    }, [searchResults, currentPage]);
 
     return (
         <div>
             <button onClick={() => setShowMainPage(true)}>Back to Home</button>
-            <SearchBar onSearch={() => {}} /> {/* Search functionality */}
-            <FilterSidebar /> {/* Filters for search results */}
-            <div>
-                {movies.map(movie => (
-                    <MovieListItem key={movie.id} movie={movie} />
-                ))}
+            <SearchBar 
+            onSearch={() => handleSearch(searchQuery)}
+            value={searchQuery}
+            onChange={handleSearchQueryChange}
+            />
+            <FilterSidebar />
+
+            {searchResults.actors && searchResults.actors.length > 0 && (
+                <div>
+                    <h2>Actors Found:</h2>
+                    <div className="flex flex-wrap justify-start space-x-4">
+                        {searchResults.actors.map(actor => (
+                            <ActorListItem key={actor.id} actor={actor} />
+                    ))}
+                </div>
             </div>
+            )}
+
+            <div>
+                <h2>Movies Found:</h2>
+                {searchResults.movies && searchResults.movies.length > 0 ? (
+                    searchResults.movies.map(movie => (
+                        <MovieListItem key={movie.id} movie={movie} />
+                    ))
+                ) : (
+                    <p>No movies found.</p>
+                )}
+            </div>
+
             <Pagination 
                 currentPage={currentPage} 
                 totalPages={totalPages} 
