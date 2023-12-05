@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import PageContext from '../PageContext';
 import SearchBar from '../components/SearchBar';
 import FeaturedMovies from '../components/FeaturedMovies';
+import Trending from './Trending';
 
 const MainPage = () => {
     const { setShowMainPage } = useContext(PageContext);
@@ -15,6 +16,7 @@ const MainPage = () => {
         <div>
             <SearchBar onSearch={handleSearch} />
             <FeaturedMovies />
+            <Trending />
         </div>
     );
 };
