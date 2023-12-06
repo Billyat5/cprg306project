@@ -15,34 +15,30 @@ const Trending = () => {
     }, []);
 
     return (
-        <>
-        <div className="container">
-            <div className="row">
-                <div className="col">
-                    <h1>Trending</h1>
-                    <i className="bi bi-fire"></i> 
-                </div>
+        <div className='container mx-auto px-4'>
+            <div className='my-8'>
+                <h1 className='text-2xl font-bold'>Trending</h1>
+                <i className='bi bi-fire'></i> 
             </div>
-            {
-                state.map((movie) => {
+            <div className='flex flex-wrap -mx-2'>
+                {state.map((movie) => {
                     const { Title, Poster, ReleaseDate, VoteAverage, id } = movie;
                     return (
-                        <div key={id} className="col" id="card">
-                            <div className="card">
-                                <img src={Poster} className="card-img-top" alt={Title} />
-                                <div className="card-body">
-                                    <h5 className="card-title">Movie Name: {Title}</h5>
-                                    <p className="card-text">Release Date: {ReleaseDate}</p>
-                                    <p className="card-text">Rating: {VoteAverage} / 10</p>
+                        <div key={id} className='w-full md:w-1/3 lg:w-1/4 px-2 mb-4'>
+                            <div className='bg-white rounded overflow-hidden shadow-lg h-full flex flex-col'>
+                                <img src={Poster} alt={Title} className='w-full h-auto' />
+                                <div className='p-4 flex flex-col justify-between flex-grow'>
+                                    <h5 className='font-bold text-lg mb-2 line-clamp-2'>{Title}</h5>
+                                    <p className='text-gray-700 text-base'>Release Date: {ReleaseDate}</p>
+                                    <p className='text-gray-700 text-base mb-4'>Rating: {VoteAverage} / 10</p>
                                 </div>
                             </div>
                         </div>
                     );
-                })
-            }
+                })}
+            </div>
         </div>
-    </>
-);
+    );
+};
 
-}
 export default Trending;

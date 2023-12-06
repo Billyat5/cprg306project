@@ -3,7 +3,6 @@
 import React, { useContext, useState } from 'react';
 import PageContext from '../context/PageContext';
 import SearchBar from '../components/SearchBar';
-import FeaturedMovies from '../components/FeaturedMovies';
 import { SearchContext } from '../context/SearchContext';
 import { fetchMovies, fetchActors } from '../_utils/tmdbApi';
 import Trending from './Trending';
@@ -33,7 +32,6 @@ const MainPage = () => {
                 value={searchQuery} 
                 onChange={handleSearchQueryChange}
             />
-            <FeaturedMovies />
             <Trending />
             {/* ... rest of the component ... */}
         </div>

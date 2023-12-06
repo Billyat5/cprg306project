@@ -13,7 +13,7 @@ export const fetchMovies = async (query, page = 1) => {
     const data = await response.json();
     return data.results.map(movie => ({
         ...movie,
-        Poster: movie.poster_path ? `${BASE_IMAGE_URL}${movie.poster_path}` : 'default_poster_url.jpg',
+        Poster: movie.poster_path ? `${BASE_IMAGE_URL}${movie.poster_path}` : 'image.svg',
         Title: movie.title,
         Year: movie.release_date ? movie.release_date.split('-')[0] : 'N/A'
     }));
@@ -31,7 +31,7 @@ export const fetchActors = async (query, page = 1) => {
     const data = await response.json();
     return data.results.map(actor => ({
         ...actor,
-        ProfilePic: actor.profile_path ? `${BASE_IMAGE_URL}${actor.profile_path}` : 'default_profile_pic_url.jpg',
+        ProfilePic: actor.profile_path ? `${BASE_IMAGE_URL}${actor.profile_path}` : '/icon.svg',
         Name: actor.name
     }));
 };
@@ -45,9 +45,11 @@ export const fetchTrendingMovies = async () => {
     const data = await response.json();
     return data.results.map(movie => ({
         ...movie,
-        Poster: movie.poster_path ? `${BASE_IMAGE_URL}${movie.poster_path}` : 'default_poster_url.jpg',
+        Poster: movie.poster_path ? `${BASE_IMAGE_URL}${movie.poster_path}` : '/image.svg',
         Title: movie.title,
         ReleaseDate: movie.release_date || 'N/A',
         VoteAverage: Math.round(movie.vote_average)
     }));
 };
+
+

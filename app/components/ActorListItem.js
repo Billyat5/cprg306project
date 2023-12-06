@@ -1,16 +1,14 @@
-const DEFAULT_ACTOR_IMAGE = 'https://static-00.iconduck.com/assets.00/profile-circle-icon-1023x1024-ucnnjrj1.png'; 
-
 const ActorListItem = ({ actor }) => {
-    const actorImage = actor.ProfilePic ? actor.ProfilePic : DEFAULT_ACTOR_IMAGE;
+    const actorImage = actor.ProfilePic ? actor.ProfilePic : '/icon.svg';
 
     return (
-        <div className="flex flex-row items-center space-x-4">
+        <div className="flex flex-col items-center space-y-2">
             <img 
                 src={actorImage} 
                 alt={actor.Name} 
                 className="w-24 h-24 rounded-full object-cover" 
             />
-            <p className="text-lg font-semibold">{actor.Name}</p>
+            <p className="text-lg font-semibold text-center h-12 overflow-hidden">{actor.Name}</p>
         </div>
     );
 };
