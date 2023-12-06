@@ -10,31 +10,43 @@ import { fetchMovies, fetchActors } from '../_utils/tmdbApi';
 
 const SearchResultsPage = () => {
     const { setShowMainPage } = useContext(PageContext);
-    const { searchResults, setSearchResults, setSearchTerm } = useContext(SearchContext);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(5); // Adjust based on actual results
+    const { searchResults, setSearchResults, setSearchTerm } = useContext(SearchContext);  
+    const [currentPage, setCurrentPage] = useState(1);   
+    const [totalPages, setTotalPages] = useState(0); 
     const [searchQuery, setSearchQuery] = useState("");
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
     };
 
-    const handleSearch = async (term) => {
-        const movieResults = await fetchMovies(term);
-        const actorResults = await fetchActors(term);
+    const handleSearch = async (term, page = 1) => {
+        const movieResults = await fetchMovies(term, page);
+        const actorResults = await fetchActors(term, page);
         setSearchResults({ movies: movieResults || [], actors: actorResults || [] });
         setSearchTerm(term);
-        setCurrentPage(1);
-        setSearchQuery("");
+        setCurrentPage(page);
+        //setSearchQuery("");
     };
 
     const handleSearchQueryChange = (query) => {
         setSearchQuery(query);
     };
 
-    useEffect(() => {
+    //useEffect(() => {
         // Update logic for totalPages or other effects
-    }, [searchResults, currentPage]);
+    //}, [searchResults, currentPage]);
+
+    // useEffect(() => {
+    //     handleSearch(searchQuery, currentPage);
+    // }, [currentPage]);
+
+    useEffect(() => {
+        if (searchQuery) {
+            handleSearch(searchQuery, currentPage);
+        }
+    }, [currentPage, searchQuery]);
+    
+    
 
     return (
         <div className='container mx-auto px-4 my-8'>
@@ -45,7 +57,7 @@ const SearchResultsPage = () => {
                 Back to Home
             </button>
             <SearchBar 
-                onSearch={() => handleSearch(searchQuery)}
+                onSearch={() => handleSearch(searchQuery, 1)}
                 value={searchQuery}
                 onChange={handleSearchQueryChange}
             />
@@ -76,11 +88,11 @@ const SearchResultsPage = () => {
                     )}
                 </div>
             </div>
-
+            
             <Pagination 
                 currentPage={currentPage} 
                 totalPages={totalPages} 
-                onPageChange={handlePageChange} 
+                onPageChange={page => setCurrentPage(page)}
             />
         </div>
     );
