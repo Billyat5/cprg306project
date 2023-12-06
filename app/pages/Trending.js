@@ -3,16 +3,18 @@ import { fetchTrendingMovies } from "../_utils/tmdbApi";
 
 const Trending = () => {
     const [state, setState] = useState([]);
+    //for pagination
+    const [currentPage, setCurrentPage] = useState(1);
 
     const fetchTrending = async () => {
-        const trendingMovies = await fetchTrendingMovies();
+        const trendingMovies = await fetchTrendingMovies(currentPage);
         setState(trendingMovies);
     };
 
     useEffect(() => {
         //call the function only when the app is initially rendered
         fetchTrending();
-    }, []);
+    }, [currentPage]);
 
     return (
         <div className='container mx-auto px-4'>
@@ -36,6 +38,11 @@ const Trending = () => {
                         </div>
                     );
                 })}
+            </div>
+            {/* Pagination section: asked ChatGPT */}
+            <div className="pagination text-center">
+                <button className="mx-4" onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}>⬅Previous</button>
+                <button onClick={() => setCurrentPage(prev => prev + 1)}>Next➡</button>
             </div>
         </div>
     );

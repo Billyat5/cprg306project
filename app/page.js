@@ -7,6 +7,8 @@ import PageContext from './context/PageContext';
 import MainPage from './pages/MainPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 
+
+
 const Page = () => {
     const [showMainPage, setShowMainPage] = useState(true);
 
