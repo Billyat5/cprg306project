@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from "react";
 import { fetchTrendingMovies } from "../_utils/tmdbApi";
 
+
 const Trending = () => {
     const [state, setState] = useState([]);
+    
+
     //for pagination
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -15,6 +18,8 @@ const Trending = () => {
         //call the function only when the app is initially rendered
         fetchTrending();
     }, [currentPage]);
+
+    
 
     return (
         <div className='container mx-auto px-4'>
@@ -37,7 +42,8 @@ const Trending = () => {
                             </div>
                         </div>
                     );
-                })}
+                })} 
+        
             </div>
             {/* Pagination section: asked ChatGPT */}
             <div className="pagination text-center">

@@ -8,12 +8,33 @@ import Pagination from '../components/Pagination';
 import { SearchContext } from '../context/SearchContext';
 import { fetchMovies, fetchActors } from '../_utils/tmdbApi';
 
+import MovieDetailPage from '../components/MovieDetail';
+
 const SearchResultsPage = () => {
     const { setShowMainPage } = useContext(PageContext);
     const { searchResults, setSearchResults, setSearchTerm } = useContext(SearchContext);  
     const [currentPage, setCurrentPage] = useState(1);   
     const [totalPages, setTotalPages] = useState(0); 
     const [searchQuery, setSearchQuery] = useState("");
+
+    const [showDetails, setShowDetails] = useState(false);
+    const [selectedMovie, setSelectedMovie] = useState(null);
+
+    const handleMovieClick = async(movieID) => {
+        try {
+            const response = await fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=0a1e1d2b0b0a0e1d2b0b0a1e1d2b0b0a&language=en-US`);
+            const data = await response.json();
+            setSelectedMovie(data);
+            setShowDetails(true);
+        } catch (error) {
+            console.error('Failed to fetch movie details:', error);
+          }
+        
+    };
+
+    const handleBackToList = () => {
+        setShowDetails(false);
+    };
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -63,6 +84,15 @@ const SearchResultsPage = () => {
             />
             <FilterSidebar />
 
+            {showDetails ? (
+                <>
+                <button onClick={handleBackToList}>Back to List</button>
+                <MovieDetailPage movie={selectedMovie} />
+                </>
+            ) : (
+                <>
+                
+
             {searchResults.actors && searchResults.actors.length > 0 && (
                 <div>
                     <h2 >Actors Found:</h2>
@@ -80,14 +110,18 @@ const SearchResultsPage = () => {
                     {searchResults.movies && searchResults.movies.length > 0 ? (
                         searchResults.movies.map(movie => (
                             <div key={movie.id} className='w-full md:w-1/3 lg:w-1/4 px-2 mb-4'>
-                                <MovieListItem movie={movie} />
+                                <MovieListItem movie={movie} onMovieClick={handleMovieClick} />
                             </div>
                         ))
                     ) : (
                         <p>No movies found.</p>
                     )}
                 </div>
+                
             </div>
+            </>
+            )
+            }
             
             <Pagination 
                 currentPage={currentPage} 

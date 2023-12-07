@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const MovieListItem = ({ movie }) => {
+const MovieListItem = ({ movie, onMovieClick }) => {
     return (
         <div className='bg-white rounded overflow-hidden shadow-lg flex flex-col h-full'>
-           
+           <div className='movie-click' onClick={() => onMovieClick(movie.id)}>
             <img 
                 src={movie.Poster} 
                 alt={`Poster of ${movie.Title}`} 
@@ -15,7 +15,7 @@ const MovieListItem = ({ movie }) => {
                 <h5 className='font-bold text-lg mb-2 line-clamp-2'>{movie.Title}</h5>
                 <p className='text-gray-700 text-base'>Year: {movie.Year}</p>
             </div>
-            
+        </div>    
         </div>
     );
 };
