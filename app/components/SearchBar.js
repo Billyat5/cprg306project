@@ -1,6 +1,6 @@
 const SearchBar = ({ onSearch, value, onChange }) => {
     return (
-        <div className="flex justify-center items-center mt-4">
+        <div className="flex justify-center items-center mt-6 mb-4">
             <input 
                 type="text" 
                 placeholder="Search movies..."

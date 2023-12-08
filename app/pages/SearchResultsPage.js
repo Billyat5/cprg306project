@@ -66,7 +66,7 @@ const SearchResultsPage = () => {
             </div>
             {searchResults.actors && searchResults.actors.length > 0 && (
                 <div>
-                    <h2 >Actors Found:</h2>
+                    <h2 className="mb-2">Actors Found:</h2>
                     <div className="flex flex-wrap justify-start space-x-4">
                         {searchResults.actors.map(actor => (
                             <ActorListItem key={actor.id} actor={actor} />
@@ -85,7 +85,7 @@ const SearchResultsPage = () => {
                             </div>
                         ))
                     ) : (
-                        <p>No movies found.</p>
+                        <p className="ml-2">No movies found.</p>
                     )}
                 </div>
             </div>

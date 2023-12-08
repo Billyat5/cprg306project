@@ -27,7 +27,7 @@ const MainPage = () => {
 
     return (
         <div>
-            <SearchBar 
+            <SearchBar
                 onSearch={handleSearch} 
                 value={searchQuery} 
                 onChange={handleSearchQueryChange}
