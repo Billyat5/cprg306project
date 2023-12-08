@@ -1,26 +1,34 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { SearchProvider } from './context/SearchContext';
-import PageContext from './context/PageContext';
+import { PageProvider } from './context/PageContext';
 import MainPage from './pages/MainPage';
 import SearchResultsPage from './pages/SearchResultsPage';
-
-
+import MovieDetailsPage from './pages/MovieDetailsPage'; // Import MovieDetailsPage
+import PageContext from './context/PageContext';
 
 const Page = () => {
-    const [showMainPage, setShowMainPage] = useState(true);
-
     return (
-        <SearchProvider>
-            <PageContext.Provider value={{ showMainPage, setShowMainPage }}>
+        <PageProvider> {/* Use PageProvider here */}
+            <SearchProvider>
                 <Header />
-                {showMainPage ? <MainPage /> : <SearchResultsPage />}
+                <MainContent />
                 <Footer />
-            </PageContext.Provider>
-        </SearchProvider>
+            </SearchProvider>
+        </PageProvider>
     );
+};
+
+const MainContent = () => {
+    const { showMainPage, showMovieDetails } = useContext(PageContext);
+
+    if (showMovieDetails) {
+        return <MovieDetailsPage />;
+    }
+
+    return showMainPage ? <MainPage /> : <SearchResultsPage />;
 };
 
 export default Page;

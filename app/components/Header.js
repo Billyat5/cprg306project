@@ -6,7 +6,7 @@ const Header = () => {
     const { setShowMainPage } = useContext(PageContext);
 
     return (
-        <header className="bg-blue-300 text-white p-4">
+        <header className="bg-blue-500 text-white p-4">
             <nav className="container mx-auto flex justify-between">
                 <h1 
                   className="text-xl font-bold cursor-pointer"

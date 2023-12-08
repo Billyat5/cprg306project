@@ -14,6 +14,7 @@ const SearchResultsPage = () => {
     const [currentPage, setCurrentPage] = useState(1);   
     const [totalPages, setTotalPages] = useState(0); 
     const [searchQuery, setSearchQuery] = useState("");
+    
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -49,20 +50,20 @@ const SearchResultsPage = () => {
     
 
     return (
-        <div className='container mx-auto px-4 my-8'>
-            <button 
-                onClick={() => setShowMainPage(true)} 
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
-            >
-                Back to Home
-            </button>
-            <SearchBar 
-                onSearch={() => handleSearch(searchQuery, 1)}
-                value={searchQuery}
-                onChange={handleSearchQueryChange}
-            />
-            <FilterSidebar />
-
+        <div className='container mx-auto px-2 my-4'>
+            <div>
+                <button 
+                    onClick={() => setShowMainPage(true)} 
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Back to Home
+                </button>
+                <SearchBar 
+                    onSearch={() => handleSearch(searchQuery, 1)}
+                    value={searchQuery}
+                    onChange={handleSearchQueryChange}
+                />
+            </div>
             {searchResults.actors && searchResults.actors.length > 0 && (
                 <div>
                     <h2 >Actors Found:</h2>

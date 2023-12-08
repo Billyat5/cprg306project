@@ -7,7 +7,7 @@ const SearchBar = ({ onSearch, value, onChange }) => {
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && onSearch()}
-                className="p-2 w-full md:w-1/2 lg:w-1/3 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="p-2 w-full md:w-1/2 lg:w-1/3 border border-gray-300 text-black rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
             <button 
                 onClick={onSearch}
