@@ -11,7 +11,6 @@ const Trending = () => {
         const trendingMovies = await fetchTrendingMovies(currentPage);
         setState(trendingMovies);
     };
-
     useEffect(() => {
         //call the function only when the app is initially rendered
         fetchTrending();
@@ -26,13 +25,8 @@ const Trending = () => {
     return (
         <div className='container mx-auto px-4'>
             <div className='my-8'>
-<<<<<<< Updated upstream
-                <h1 className='text-3xl font-bold'>Trending</h1>
+                <h1 className='text-2xl font-bold'>Trending</h1>
                 <i className='bi bi-fire'></i>
-=======
-                <h1 className='text-4xl font-bold'>Trending</h1>
-                <i className='bi bi-fire'></i> 
->>>>>>> Stashed changes
             </div>
             <div className='flex flex-wrap -mx-2'>
                 {state.map((movie) => {
@@ -61,16 +55,9 @@ const Trending = () => {
                     );
                 })}
             </div>
-<<<<<<< Updated upstream
-            <div className="pagination text-center mt-2 mb-5">
-                <button className="mx-4 hover:underline font-bold text-xl" onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}>⬅ Previous</button>
-                <button className="hover:underline font-bold text-xl" onClick={() => setCurrentPage(prev => prev + 1)}>Next ➡</button>
-=======
-            {/* Pagination section: asked ChatGPT */}
-            <div className="pagination text-center text-xl mt-4 mb-6 mx-4">
-                <button className="mx-4 hover:underline font-bold" onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}>⬅ Previous</button>
-                <button className="hover:underline font-bold" onClick={() => setCurrentPage(prev => prev + 1)}>Next ➡</button>
->>>>>>> Stashed changes
+            <div className="pagination text-center">
+                <button className="mx-4" onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}>⬅Previous</button>
+                <button onClick={() => setCurrentPage(prev => prev + 1)}>Next➡</button>
             </div>
         </div>
     );

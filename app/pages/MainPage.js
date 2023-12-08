@@ -11,7 +11,6 @@ const MainPage = () => {
     const { setShowMainPage } = useContext(PageContext);
     const { setSearchResults, setSearchTerm } = useContext(SearchContext);
     const [searchQuery, setSearchQuery] = useState("");
-
     const handleSearch = async () => {
         const movieResults = await fetchMovies(searchQuery);
         const actorResults = await fetchActors(searchQuery);
@@ -20,14 +19,13 @@ const MainPage = () => {
         setSearchQuery("");  // Clear the search query after the search
         setShowMainPage(false);  // Optional: Change the page view based on your app's flow
     };
-
     const handleSearchQueryChange = (query) => {
         setSearchQuery(query); // Update the search query state
     };
 
     return (
         <div>
-            <SearchBar
+            <SearchBar 
                 onSearch={handleSearch} 
                 value={searchQuery} 
                 onChange={handleSearchQueryChange}
@@ -37,5 +35,4 @@ const MainPage = () => {
         </div>
     );
 };
-
 export default MainPage;

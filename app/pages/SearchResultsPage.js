@@ -15,11 +15,9 @@ const SearchResultsPage = () => {
     const [totalPages, setTotalPages] = useState(0); 
     const [searchQuery, setSearchQuery] = useState("");
     
-
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
     };
-
     const handleSearch = async (term, page = 1) => {
         const movieResults = await fetchMovies(term, page);
         const actorResults = await fetchActors(term, page);
@@ -28,19 +26,15 @@ const SearchResultsPage = () => {
         setCurrentPage(page);
         //setSearchQuery("");
     };
-
     const handleSearchQueryChange = (query) => {
         setSearchQuery(query);
     };
-
     //useEffect(() => {
         // Update logic for totalPages or other effects
     //}, [searchResults, currentPage]);
-
     // useEffect(() => {
     //     handleSearch(searchQuery, currentPage);
     // }, [currentPage]);
-
     useEffect(() => {
         if (searchQuery) {
             handleSearch(searchQuery, currentPage);
@@ -48,7 +42,6 @@ const SearchResultsPage = () => {
     }, [currentPage, searchQuery]);
     
     
-
     return (
         <div className='container mx-auto px-2 my-4'>
             <div>
@@ -66,11 +59,7 @@ const SearchResultsPage = () => {
             </div>
             {searchResults.actors && searchResults.actors.length > 0 && (
                 <div>
-<<<<<<< Updated upstream
-                    <h2 className="mb-2">Actors Found:</h2>
-=======
-                    <h2 className="mb-3">Actors Found:</h2>
->>>>>>> Stashed changes
+                    <h2 >Actors Found:</h2>
                     <div className="flex flex-wrap justify-start space-x-4">
                         {searchResults.actors.map(actor => (
                             <ActorListItem key={actor.id} actor={actor} />
@@ -78,7 +67,6 @@ const SearchResultsPage = () => {
                     </div>
                 </div>
             )}
-
             <div>
                 <h2 className="text-2xl font-bold mb-4">Movies Found:</h2>
                 <div className='flex flex-wrap -mx-2'>
@@ -89,7 +77,7 @@ const SearchResultsPage = () => {
                             </div>
                         ))
                     ) : (
-                        <p className="ml-2">No movies found.</p>
+                        <p>No movies found.</p>
                     )}
                 </div>
             </div>
@@ -102,5 +90,4 @@ const SearchResultsPage = () => {
         </div>
     );
 };
-
 export default SearchResultsPage;
