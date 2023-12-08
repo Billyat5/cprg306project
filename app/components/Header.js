@@ -9,7 +9,7 @@ const Header = () => {
         <header className="bg-blue-500 text-white p-4">
             <nav className="container mx-auto flex justify-between">
                 <h1 
-                  className="text-xl font-bold cursor-pointer"
+                  className="text-2xl font-bold cursor-pointer"
                   onClick={() => setShowMainPage(true)}
                 >
                     HaHaHollywood

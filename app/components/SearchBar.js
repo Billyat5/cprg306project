@@ -1,6 +1,10 @@
 const SearchBar = ({ onSearch, value, onChange }) => {
     return (
+<<<<<<< Updated upstream
         <div className="flex justify-center items-center mt-6 mb-4">
+=======
+        <div className="flex justify-center items-center mt-8">
+>>>>>>> Stashed changes
             <input 
                 type="text" 
                 placeholder="Search movies..."
