@@ -25,7 +25,7 @@ const Trending = () => {
     return (
         <div className='container mx-auto px-4'>
             <div className='my-8'>
-                <h1 className='text-2xl font-bold'>Trending</h1>
+                <h1 className='text-3xl font-bold'>Trending</h1>
                 <i className='bi bi-fire'></i>
             </div>
             <div className='flex flex-wrap -mx-2'>
@@ -55,9 +55,9 @@ const Trending = () => {
                     );
                 })}
             </div>
-            <div className="pagination text-center">
-                <button className="mx-4" onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}>⬅Previous</button>
-                <button onClick={() => setCurrentPage(prev => prev + 1)}>Next➡</button>
+            <div className="pagination text-center mt-2 mb-5 text-xl">
+                <button className="mx-4 font-bold hover:underline" onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}>⬅ Previous</button>
+                <button className=" font-bold hover:underline" onClick={() => setCurrentPage(prev => prev + 1)}>Next ➡</button>
             </div>
         </div>
     );
