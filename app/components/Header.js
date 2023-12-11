@@ -1,4 +1,3 @@
-// app/components/Header.js
 import React, { useContext } from 'react';
 import PageContext from '../context/PageContext';
 

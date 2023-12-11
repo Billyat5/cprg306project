@@ -17,7 +17,7 @@ const MainPage = () => {
         setSearchResults({ movies: movieResults || [], actors: actorResults || [] });
         setSearchTerm(searchQuery);  // Update the search term in the context
         setSearchQuery("");  // Clear the search query after the search
-        setShowMainPage(false);  // Optional: Change the page view based on your app's flow
+        setShowMainPage(false); 
     };
     const handleSearchQueryChange = (query) => {
         setSearchQuery(query); // Update the search query state
@@ -31,7 +31,6 @@ const MainPage = () => {
                 onChange={handleSearchQueryChange}
             />
             <Trending />
-            {/* ... rest of the component ... */}
         </div>
     );
 };

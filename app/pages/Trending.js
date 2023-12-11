@@ -1,18 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { fetchTrendingMovies } from '../_utils/tmdbApi';
-import PageContext from '../context/PageContext'; // Import PageContext
-
+import PageContext from '../context/PageContext'; 
 const Trending = () => {
     const [state, setState] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const { setShowMainPage, setShowMovieDetails, setSelectedMovieId } = useContext(PageContext); // Use PageContext
+    const { setShowMainPage, setShowMovieDetails, setSelectedMovieId } = useContext(PageContext); 
 
     const fetchTrending = async () => {
         const trendingMovies = await fetchTrendingMovies(currentPage);
         setState(trendingMovies);
     };
     useEffect(() => {
-        //call the function only when the app is initially rendered
         fetchTrending();
     }, [currentPage]);
 

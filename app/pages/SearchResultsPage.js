@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PageContext from '../context/PageContext';
 import SearchBar from '../components/SearchBar';
-import FilterSidebar from '../components/FilterSidebar';
 import MovieListItem from '../components/MovieListItem';
 import ActorListItem from '../components/ActorListItem';
 import Pagination from '../components/Pagination';
@@ -15,26 +14,17 @@ const SearchResultsPage = () => {
     const [totalPages, setTotalPages] = useState(0); 
     const [searchQuery, setSearchQuery] = useState("");
     
-    const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
-    };
     const handleSearch = async (term, page = 1) => {
         const movieResults = await fetchMovies(term, page);
         const actorResults = await fetchActors(term, page);
         setSearchResults({ movies: movieResults || [], actors: actorResults || [] });
         setSearchTerm(term);
         setCurrentPage(page);
-        //setSearchQuery("");
     };
     const handleSearchQueryChange = (query) => {
         setSearchQuery(query);
     };
-    //useEffect(() => {
-        // Update logic for totalPages or other effects
-    //}, [searchResults, currentPage]);
-    // useEffect(() => {
-    //     handleSearch(searchQuery, currentPage);
-    // }, [currentPage]);
+   
     useEffect(() => {
         if (searchQuery) {
             handleSearch(searchQuery, currentPage);
